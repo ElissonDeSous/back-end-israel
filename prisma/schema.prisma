@@ -1,0 +1,37 @@
+
+
+generator client {
+  provider = "prisma-client"
+  output   = "generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+model user{
+    Id Int @id @default(autoincrement())
+    Name String
+    email String @unique
+    password String
+    Post post[]
+    create DateTime @default(now())
+    update DateTime @updatedAt 
+}
+
+model upload {
+  id Int @id @default(autoincrement())
+  imagem String
+
+  create DateTime @default(now())
+  update DateTime @updatedAt 
+}
+
+model post{
+  Id Int @id @default(autoincrement())
+  conteudo Json
+  Author user @relation(fields: [usersId], references: [Id])
+  usersId Int
+  create DateTime @default(now())
+  update DateTime @updatedAt 
+
+}
