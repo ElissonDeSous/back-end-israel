@@ -1,0 +1,23 @@
+services:
+    src:
+      build: .
+      container_name: Israel_advogados
+      volumes:
+       -  .:/src
+      ports: 
+       - "8080:8080"
+      depends_on:
+        - database
+    database:
+      image: postgres:17
+      container_name: BD_ISRAEL_ADVOGADOS
+      environment:
+           POSTGRES_USER: ${USERS_NAME}
+           POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+           POSTGRES_DB: ${DATABASE_NAME}
+      ports:
+        - "5432:5432"
+      volumes: 
+       - postgres_data:/var/lib/postgresql/data  
+volumes:
+    postgres_data:      

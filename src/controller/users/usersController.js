@@ -5,20 +5,18 @@ export default class Users{
 
     async DetailsUsers(req , res){
 
-        const id = req.id
+        const id = Number(req.id)
           const dados = await prisma.user.findUnique({
               where:{
-                post:{
-                    id:id
-                }
+                 Id:id   
               },
               select:{
                     Id:true,
                     Name:true,
-                    email:true}
+                }
           })
 
-          res.status(200).json({dados})
+          res.status(200).json(dados)
     }
 
     async createUsers(req,res){
