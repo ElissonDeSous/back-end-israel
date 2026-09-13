@@ -25,6 +25,7 @@ rotas.get('/detalhes', Authenticar, user.DetailsUsers)
 rotas.post('/conteudo', Authenticar,postagens.createPost)
 rotas.get('/conteudo', Authenticar,postagens.readPost)
 rotas.post('/img',Authenticar,multer.single('file'),img.createImg)
+rotas.delete("/conteudo/:Id", Authenticar, postagens.Delete)
 
 
 export default rotas

@@ -27,4 +27,14 @@ export default class Post{
             mensagem: "Post Criado com Suceso"
          })
     }
+
+    async Delete(req,res){
+        const {Id } =  req.params
+
+        await prisma.post.delete({
+            where:{Id:Number(Id)}
+        })
+
+        return res.status(200).json({mensagem:'Deletado com Sucesso'})
+    }
 }
